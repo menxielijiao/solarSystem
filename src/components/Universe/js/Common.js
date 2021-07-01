@@ -29,8 +29,8 @@ class Common {
     this.camera = new THREE.PerspectiveCamera(
       45,
       this.size.windowW / (this.size.windowH*0.8),
-      0.001,
-      100000
+      0.01,
+      350000
     );
     // this.camera.position.set(3, 0, 11538)
     // this.camera.lookAt(new THREE.Vector3(0, 0, 11538))
@@ -61,6 +61,16 @@ class Common {
 
     this.clock = new THREE.Clock()
     this.clock.start()
+
+    this.sGeo = new THREE.SphereGeometry(600000, 60, 60)
+    this.sMat = new THREE.MeshBasicMaterial({
+      map: new THREE.TextureLoader().load('img/other/8k_stars_milky_way.jpg'),
+      side: THREE.BackSide,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+    })
+    this.star = new THREE.Mesh(this.sGeo, this.sMat)
+    this.scene.add(this.star)
 
     // this.controls = new OrbitControls(this.camera, this.renderer.domElement)
   }

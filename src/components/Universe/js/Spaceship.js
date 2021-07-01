@@ -133,7 +133,7 @@ export default class Spaceship {
 
   goToBieDePlanet(targetPos) {
     this.shipSpeed = this.shipSpeed > 100 ? this.shipSpeed : this.shipSpeed+0.1
-    // this.shipSpeed += 0.01
+
     this.prevVector = this.frontVector.clone()
     const ship = this.model.scene
     const vectorOfShipToBiedePlanet = targetPos.clone().sub(ship.position).normalize()
@@ -161,7 +161,6 @@ export default class Spaceship {
     const intersect = this.raycaster.intersectObjects(target.children)
     if(intersect.length > 0) {
       const dist = intersect[0].distance
-      // console.log(intersect)
       this.targetDom.innerHTML = Math.round(dist)
       if(dist < (this.planet.planetSize[name] * this.planet.baseRadius) || dist < 150) {
         // console.log('衝突')
