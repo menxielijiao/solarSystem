@@ -32,8 +32,6 @@ class Common {
       0.01,
       350000
     );
-    // this.camera.position.set(3, 0, 11538)
-    // this.camera.lookAt(new THREE.Vector3(0, 0, 11538))
     this.camera.position.set(0,500,-500)
     this.camera.lookAt(this.scene.position)
 

@@ -2,7 +2,6 @@ import Common from "./Common"
 import Planet from "./Planet"
 import Spaceship from "./Spaceship"
 // import Stats from "./Stats"
-// import gsap from "gsap"
 
 export default class MyGL {
 
@@ -37,9 +36,6 @@ export default class MyGL {
     this.uranus.init()
     this.neptune = new Planet('neptune')
     this.neptune.init()
-
-    // Common.camera.position.set(0, 50, 11538)
-    // Common.camera.lookAt(this.ship.model.scene.position)
 
     this.ship = new Spaceship()
 
@@ -76,13 +72,5 @@ export default class MyGL {
 
   changePlanet(name) {
     this.nowPlanet = name
-    // console.log(this[this.nowPlanet].planet.position)
-
-    // this.ship.model.scene.rotation.z = 0
-    // gsap.to(this.ship.model.scene.rotation, {
-    //   z: -Math.PI / 2,
-    //   duration: 0.1,
-    //   ease: 'Power3.easeInOut',
-    // })
   }
 }

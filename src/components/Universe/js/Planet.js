@@ -12,8 +12,8 @@ export default class Planet {
     this.planetSize = {
       sun: 109,
       mercury: 0.38,
-      venus: 0.95, // 0.95
-      earth: 1, // 1
+      venus: 0.95,
+      earth: 1,
       moon: 0.27,
       mars: 0.53,
       jupiter: 11.2,
@@ -22,10 +22,10 @@ export default class Planet {
       neptune: 3.88,
     }
     this.planetDistance = {
-      sun:     1, // 0
+      sun:     1,
       mercury: 4461,
-      venus:   8307, // 8307
-      earth:   11538, // 11538
+      venus:   8307,
+      earth:   11538,
       moon:    29,
       mars:    17692,
       jupiter: 60000,
@@ -36,7 +36,7 @@ export default class Planet {
     this.planetOrbitalPeriod = {
       mercury: 0.241,
       venus:   0.615,
-      earth:   1, // 1
+      earth:   1,
       moon:    0.073,
       mars:    4.602,
       jupiter: 11.862,
@@ -56,8 +56,6 @@ export default class Planet {
   }
 
   init() {
-    // console.log(Object.keys(this.planetDistance).length)
-
     this.switchPlanetData()
 
     this.geometry = new THREE.SphereGeometry(this.baseRadius, 60, 60)
@@ -129,7 +127,6 @@ export default class Planet {
 
     this.group.add(this.planet)
     Common.scene.add(this.group)
-    // Common.scene.add(this.planet)
   }
 
   switchPlanetData() {
@@ -184,7 +181,6 @@ export default class Planet {
     const nowTime = Common.time.total * 0.1
     const sin = Math.sin(nowTime / this.planetOrbitalPeriod[this.pName])
     const cos = Math.cos(nowTime / this.planetOrbitalPeriod[this.pName])
-    // console.log(sin, cos)
 
     return new THREE.Vector3(sin * this.planetDistance[this.pName], 0, cos * this.planetDistance[this.pName])
   }

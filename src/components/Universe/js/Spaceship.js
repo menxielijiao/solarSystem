@@ -2,7 +2,6 @@ import * as THREE from "three"
 import Common from "./Common"
 import Planet from "./Planet"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-// import gsap from "gsap"
 
 export default class Spaceship {
   constructor() {
@@ -30,7 +29,6 @@ export default class Spaceship {
     const loader = new GLTFLoader()
     const _this = this
     loader.load(this.modelUrl, function(data) {
-      // console.log(data)
       _this.model =  data
       Common.scene.add(_this.model.scene)
       _this.model.scene.scale.setScalar(0.5) // 0.05
@@ -57,11 +55,6 @@ export default class Spaceship {
       const judge = this.collisionDetection(target, targetPlanetName)
       if(judge) {
         this.targetPlanet = targetPlanetName
-        // gsap.to(this.model.scene.rotation, {
-        //   z: -0,
-        //   duration: 0.1,
-        //   ease: 'Power3.easeInOut',
-        // })
         this.shipSpeed = 100
       }
       return
@@ -70,8 +63,6 @@ export default class Spaceship {
     this.targetPlanet = targetPlanetName
     this.targetPos = target.position.clone()
 
-    // this.model.scene.position.x += Math.sin(Common.time.total) / 10
-    // this.model.scene.position.y += Math.cos(Common.time.total) / 10
     this.shipPosUpdate()
   }
 
@@ -79,14 +70,12 @@ export default class Spaceship {
     this.degree -= 0.5
     this.prevVector = this.frontVector.clone()
 
-    // const oldPos = this.model.scene.position.clone()
     const oldDegree = this.degree + 0.5
     const oldPos = this.targetPos.clone().add(this.getCircularMotionPosition(oldDegree))
     this.newPos = this.targetPos.clone().add(this.getCircularMotionPosition(this.degree))
     this.model.scene.position.copy(this.newPos)
     const vectorOfnantara = this.newPos.clone().sub(oldPos).normalize().multiplyScalar(0.1)
     this.frontVector.add(vectorOfnantara).normalize()
-    // this.model.scene.position.add(this.frontVector.clone())
 
     const backVector = this.frontVector.clone().negate()
     const distance = 10
@@ -117,17 +106,13 @@ export default class Spaceship {
   }
 
   setQuaternion() {
-    // if(!this.loadOK) return
 
     const tangent = new THREE.Vector3().crossVectors(this.prevVector, this.frontVector).normalize()
-    // console.log(this.prevVector, this.frontVector)
-    // const normal = this.newPos.clone().sub(this.targetPos).normalize()
 
     const cos = this.prevVector.dot(this.frontVector)
     const radians = Math.acos(cos)
     const qtn = new THREE.Quaternion()
     qtn.setFromAxisAngle(new THREE.Vector3(tangent.x, tangent.y, tangent.z), radians)
-    // qtn.setFromAxisAngle(normal, radians)
     this.model.scene.quaternion.premultiply(qtn)
   }
 
