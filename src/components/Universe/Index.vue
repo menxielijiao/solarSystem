@@ -7,6 +7,7 @@
       <li id="distance"></li>
     </ul>
     <canvas id="webgl_canvas" ref="canvas" />
+    <p id="license_txt">Low Poly Spaceship by <a href="https://market.pmnd.rs/creator/edwinrc" target="_blank" rel="noopener">EdwinRC</a>,&nbsp;<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC-BY</a></p>
   </div>
 </template>
 <script>
@@ -64,5 +65,15 @@ ul li:hover {
 }
 #distance {
   color: #9205d4;
+}
+#license_txt {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  color: #fff;
+  font-size: .5rem;
+}
+#license_txt > a {
+  color: #ff0;
 }
 </style>
